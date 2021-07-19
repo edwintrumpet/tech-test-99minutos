@@ -1,4 +1,5 @@
 const Tree = require('../utils/Tree');
+const heightCalculator = require('../utils/heightCalculator');
 
 class TreeServices {
   static createTree(toTree) {
@@ -13,10 +14,7 @@ class TreeServices {
 
   static height(toTree) {
     const tree = this.createTree(toTree);
-
-    console.log(tree);
-
-    return 5;
+    return heightCalculator(tree.head);
   }
 }
 
