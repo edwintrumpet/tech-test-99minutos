@@ -7,6 +7,7 @@ const {
   wrapErrors,
 } = require('./middlewares/errorHandlers');
 const { port } = require('./config');
+const notFoundHandler = require('./middlewares/notFoundHandler');
 const routes = require('./routes');
 
 const app = express();
@@ -16,6 +17,9 @@ app.use(express.json());
 
 // Routes
 routes(app);
+
+// Catch 404
+app.use(notFoundHandler);
 
 // Handle errors
 app.use(logErrors);
