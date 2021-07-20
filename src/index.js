@@ -1,12 +1,12 @@
 const express = require('express');
 const debug = require('debug')('app:server');
 
-const { port } = require('./config');
 const {
   errorHandler,
   logErrors,
   wrapErrors,
 } = require('./middlewares/errorHandlers');
+const { port } = require('./config');
 const routes = require('./routes');
 
 const app = express();
