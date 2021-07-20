@@ -16,6 +16,15 @@ class TreeServices {
     const tree = this.createTree(toTree);
     return heightCalculator(tree.head);
   }
+
+  static neighbors({ toTree, node }) {
+    const tree = this.createTree(toTree);
+    const { left, right } = tree.getNode(node);
+    return {
+      left,
+      right,
+    };
+  }
 }
 
 module.exports = TreeServices;
