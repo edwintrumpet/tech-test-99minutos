@@ -58,6 +58,18 @@ npm test
 ### Endpoints
 
 ---
+**path:** `/`  
+**method:** GET  
+**description:** This endpoint returns a message that indicates if API is
+working  
+**response:**
+```json
+{
+  "message": "99 minutos app test works!"
+}
+```
+
+---
 **path:** `/v1/b-trees/height`  
 **method:** POST  
 **description:** This endpoint receives an array of numbers and converts it to a
