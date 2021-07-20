@@ -25,6 +25,28 @@ class TreeServices {
       right,
     };
   }
+
+  static bfs(toTree) {
+    const tree = this.createTree(toTree);
+
+    const toCheck = [tree.head];
+    const result = [tree.head.value];
+
+    while (toCheck.length) {
+      const head = toCheck[0];
+      if (head.left) {
+        toCheck.push(head.left);
+        result.push(head.left.value);
+      }
+      if (head.right) {
+        toCheck.push(head.right);
+        result.push(head.right.value);
+      }
+      toCheck.shift();
+    }
+
+    return result;
+  }
 }
 
 module.exports = TreeServices;

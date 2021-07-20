@@ -26,8 +26,10 @@ const routes = (app) => {
   });
 
   router.post('/bfs', (req, res, next) => {
+    const { toTree } = req.body;
     try {
-      res.status(200).json({ bfs: [-4, 1, -3] });
+      const bfs = TreeServices.bfs(toTree);
+      res.status(200).json({ bfs });
     } catch (err) {
       next(err);
     }
