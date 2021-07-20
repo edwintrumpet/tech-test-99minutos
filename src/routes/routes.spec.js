@@ -28,6 +28,17 @@ describe('Routes', () => {
       .post('/v1/b-trees/height')
       .send({ toTree: mock3 })
       .then((response) => expect(response.body.height).toBe(3)));
+
+    it('Bad request should return status 400', () => request
+      .post('/v1/b-trees/height')
+      .send({ toTree: 'tree' })
+      .then((response) => expect(response.statusCode).toBe(400)));
+
+    it('Bad request should return error message', () => request
+      .post('/v1/b-trees/height')
+      .send({ toTree: 'tree' })
+      .then((response) => expect(response.body.message)
+        .toBe('"toTree" must be an array')));
   });
 
   describe('/neighbors', () => {
@@ -89,6 +100,23 @@ describe('Routes', () => {
         left: -29,
         right: -12,
       })));
+
+    it('Bad request should return status 400', () => request
+      .post('/v1/b-trees/neighbors')
+      .send({
+        toTree: mock3,
+        node: 'node',
+      })
+      .then((response) => expect(response.statusCode).toBe(400)));
+
+    it('Bad request should return error message', () => request
+      .post('/v1/b-trees/neighbors')
+      .send({
+        toTree: mock3,
+        node: 'node',
+      })
+      .then((response) => expect(response.body.message)
+        .toBe('"node" must be a number')));
   });
 
   describe('/bfs', () => {
@@ -114,5 +142,16 @@ describe('Routes', () => {
       .send({ toTree: mock3 })
       .then((response) => expect(response.body.bfs)
         .toEqual([-23, -29, -12, -27])));
+
+    it('Bad request should return status 400', () => request
+      .post('/v1/b-trees/bfs')
+      .send({ toTree: 'tree' })
+      .then((response) => expect(response.statusCode).toBe(400)));
+
+    it('Bad request should return error message', () => request
+      .post('/v1/b-trees/bfs')
+      .send({ toTree: 'tree' })
+      .then((response) => expect(response.body.message)
+        .toBe('"toTree" must be an array')));
   });
 });

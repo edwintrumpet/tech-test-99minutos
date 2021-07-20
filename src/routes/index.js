@@ -1,11 +1,14 @@
 const express = require('express');
+
+const { nodeTree, treeSchema } = require('../schemas/treeSchemas');
 const TreeServices = require('../services/TreeServices');
+const validationHandler = require('../middlewares/validationHandler');
 
 const routes = (app) => {
   const router = express.Router();
   app.use('/v1/b-trees', router);
 
-  router.post('/height', (req, res, next) => {
+  router.post('/height', validationHandler(treeSchema), (req, res, next) => {
     const { toTree } = req.body;
     try {
       const height = TreeServices.height(toTree);
@@ -15,7 +18,7 @@ const routes = (app) => {
     }
   });
 
-  router.post('/neighbors', (req, res, next) => {
+  router.post('/neighbors', validationHandler(nodeTree), (req, res, next) => {
     const { toTree, node } = req.body;
     try {
       const neighbors = TreeServices.neighbors({ toTree, node });
@@ -25,7 +28,7 @@ const routes = (app) => {
     }
   });
 
-  router.post('/bfs', (req, res, next) => {
+  router.post('/bfs', validationHandler(treeSchema), (req, res, next) => {
     const { toTree } = req.body;
     try {
       const bfs = TreeServices.bfs(toTree);
