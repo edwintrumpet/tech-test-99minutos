@@ -25,6 +25,8 @@
 
 REST API for 99 minutos
 
+Service available on https://ninety-nine-minutos-tech-test.herokuapp.com/
+
 ## Develop
 
 You must have Node.js v14 installed
