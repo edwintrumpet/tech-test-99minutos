@@ -1,6 +1,9 @@
 # javascript
 node_modules
 
+# tests
+coverage
+
 # secrets
 .env
 

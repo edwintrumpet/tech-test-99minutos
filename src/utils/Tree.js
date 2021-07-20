@@ -34,7 +34,7 @@ class Tree {
     let node = this.head;
 
     while (true) {
-      if (node?.value === null) {
+      if (node === null) {
         throw Boom.notFound('Node is not found in tree');
       }
       if (node.value === nodeValue) {

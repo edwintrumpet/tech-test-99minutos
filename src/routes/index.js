@@ -1,38 +1,13 @@
 const express = require('express');
-const TreeServices = require('../services/TreeServices');
+const treeRoutes = require('./treeRoutes');
 
 const routes = (app) => {
   const router = express.Router();
-  app.use('/v1/b-trees', router);
+  app.use('/', router);
+  treeRoutes(app);
 
-  router.post('/height', (req, res, next) => {
-    const { toTree } = req.body;
-    try {
-      const height = TreeServices.height(toTree);
-      res.status(200).json({ height });
-    } catch (err) {
-      next(err);
-    }
-  });
-
-  router.post('/neighbors', (req, res, next) => {
-    const { toTree, node } = req.body;
-    try {
-      const neighbors = TreeServices.neighbors({ toTree, node });
-      res.status(200).json({ neighbors });
-    } catch (err) {
-      next(err);
-    }
-  });
-
-  router.post('/bfs', (req, res, next) => {
-    const { toTree } = req.body;
-    try {
-      const bfs = TreeServices.bfs(toTree);
-      res.status(200).json({ bfs });
-    } catch (err) {
-      next(err);
-    }
+  router.get('/', (req, res) => {
+    res.status(200).json({ message: '99 minutos app test works!' });
   });
 };
 

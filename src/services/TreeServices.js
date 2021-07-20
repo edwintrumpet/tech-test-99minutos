@@ -1,12 +1,12 @@
-const Tree = require('../utils/Tree');
 const heightCalculator = require('../utils/heightCalculator');
+const Tree = require('../utils/Tree');
 
 class TreeServices {
   static createTree(toTree) {
     const tree = new Tree();
 
     for (const value of toTree) {
-      tree.addNode(value);
+      tree.addNode(Number(value));
     }
 
     return tree;
@@ -19,7 +19,7 @@ class TreeServices {
 
   static neighbors({ toTree, node }) {
     const tree = this.createTree(toTree);
-    const { left, right } = tree.getNode(node);
+    const { left, right } = tree.getNode(Number(node));
     return {
       left,
       right,
